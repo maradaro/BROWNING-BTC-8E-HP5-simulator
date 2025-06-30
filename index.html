@@ -248,7 +248,7 @@
         /* 回放資訊條樣式 */
         .playback-info-strip {
             position: absolute;
-            bottom: 24px; /* FIX: 留出空間給按鍵指示 */
+            bottom: 24px; 
             left: 0;
             width: 100%;
             background-color: rgba(0, 0, 0, 0.8);
@@ -1246,8 +1246,19 @@
             captureDuration = parseDurationToMs(cameraSettings.videoLength);
             
             if (cameraState.videoStream && 'MediaRecorder' in window) {
+                
+                const mimeTypes = [ 'video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm', 'video/mp4' ];
+                const supportedType = mimeTypes.find(type => MediaRecorder.isTypeSupported(type));
+                if (!supportedType) {
+                    console.error("No supported mime type found for MediaRecorder");
+                    cameraState.homeStatus = 'ready';
+                    renderUI();
+                    return;
+                }
+                const extension = supportedType.includes('webm') ? 'webm' : 'mp4';
+                
                 cameraState.recordedChunks = [];
-                const options = { mimeType: 'video/webm; codecs=vp9' };
+                const options = { mimeType: supportedType };
                 cameraState.mediaRecorder = new MediaRecorder(cameraState.videoStream, options);
 
                 cameraState.mediaRecorder.ondataavailable = (event) => {
@@ -1255,10 +1266,10 @@
                 };
 
                 cameraState.mediaRecorder.onstop = () => {
-                    const blob = new Blob(cameraState.recordedChunks, { type: 'video/webm' });
+                    const blob = new Blob(cameraState.recordedChunks, { type: supportedType });
                     cameraState.mediaGallery.push({ type: 'video', data: blob, info: infoData });
                     const url = URL.createObjectURL(blob);
-                    downloadFile(url, generateFilename('webm'));
+                    downloadFile(url, generateFilename(extension));
                 };
                 
                 cameraState.mediaRecorder.start();
