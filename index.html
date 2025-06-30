@@ -15,6 +15,8 @@
             -webkit-user-select: none; /* Safari */
             -ms-user-select: none; /* IE 10+ */
             user-select: none; /* Standard syntax */
+            /* FIX: 防止手機連點縮放 */
+            touch-action: manipulation;
         }
 
         /* 相機機身樣式 */
@@ -85,7 +87,7 @@
         /* 關機螢幕樣式 */
         .screen-off {
             background-color: #3a5335;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAQlBMVEUAAAD/xgD/yAD/xwD/yAD/xwD/xgD/xgD/xgD/xgD/xgD/xgD/yAD/yAD/xgD/yAD/yAD/yAD/yAD/xgD/xgD/xgBixwL3AAAAFXRSTlMAVnXO6982/J4Q/emwPObY2NJkl2lBf64a+wAAAsxJREFUeNrt3NlygyAUBUGGERFxX+j93/I6jYYSUEIHNv/sC8/M5A6EABiG0nVbN5yqNlW0baxso23jg4yMWpYtG6s2VbSNtY23bZQNG2siYw/FWi6KiI1cREREREQ+RkTGVyLi5CNiHkY+RESMiIh8jYh8jIh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8j');
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAQlBMVEUAAAD/xgD/yAD/xwD/yAD/xwD/xgD/xgD/xgD/xgD/xgD/xgD/yAD/yAD/xgD/yAD/yAD/yAD/yAD/xgD/xgD/xgBixwL3AAAAFXRSTlMAVnXO6982/J4Q/emwPObY2NJkl2lBf64a+wAAAsxJREFUeNrt3NlygyAUBUGGERFxX+j93/I6jYYSUEIHNv/sC8/M5A6EABiG0nVbN5yqNlW0baxso23jg4yMWpYtG6s2VbSNtY23bZQNG2siYw/FWi6KiI1cREREREQ+RkTGVyLi5CNiHkY+RESMiIh8jYh8jIh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8jYh8j');
             background-position: center;
             background-repeat: no-repeat;
             background-size: 33%;
@@ -238,7 +240,7 @@
                 <div id="screen-overlay"></div>
             </div>
             
-            <!-- FIX: 控制按鈕區重新佈局 -->
+            <!-- 控制按鈕區 -->
             <div class="mt-4 p-2 bg-gray-700 rounded-lg">
                 <!-- D-Pad and E button Grid -->
                 <div class="grid grid-cols-3 gap-4 w-56 mx-auto">
@@ -292,6 +294,10 @@
                 <span class="guide-label text-orange-400 font-bold">確認:</span>
                 <span class="guide-desc">點擊 E 按鈕來確認選擇或進入設定。在待機畫面且準備就緒(READY)時，可模擬觸發拍攝。</span>
             </div>
+             <div class="guide-item">
+                <span class="guide-label text-orange-400 font-bold">存檔:</span>
+                <span class="guide-desc">拍攝的照片或影片將會自動觸發瀏覽器下載。</span>
+            </div>
             <hr class="border-gray-600 mt-4">
         </div>
 
@@ -303,6 +309,9 @@
             </div>
         </div>
     </div>
+    
+    <!-- 用於擷取照片的隱藏Canvas -->
+    <canvas id="capture-canvas" class="hidden"></canvas>
 
 <script type="module">
     // --- DOM 元素 ---
@@ -310,6 +319,7 @@
     const screenFlash = document.getElementById('screen-flash');
     const screenOverlay = document.getElementById('screen-overlay');
     const liveVideo = document.getElementById('live-video');
+    const captureCanvas = document.getElementById('capture-canvas');
     const settingsSummary = document.getElementById('settings-summary');
     const motionLed = document.getElementById('motion-led');
     const buttons = {
@@ -342,13 +352,14 @@
         },
         videoStream: null,
         cameraInitialized: false,
-        // FIX: 設定預設時間為本地時區的午夜
         cameraClock: new Date(1970, 0, 1, 0, 0, 0),
         batteryLevel: 100,
         batteryDrainInterval: null,
-        // FIX: 預設計數改100/993
         photosTaken: 100,
         sdCardCapacity: 993,
+        // 用於錄影
+        mediaRecorder: null,
+        recordedChunks: [],
     };
 
     // 初始相機設定
@@ -568,7 +579,6 @@
                  content = renderConfirmScreen('RESTORE DEFAULTS (恢復預設值)?', () => {
                      cameraSettings = { ...initialCameraSettings };
                      cameraState.cameraClock = new Date(1970, 0, 1, 0, 0, 0);
-                     // FIX: 恢復預設時，計數也恢復
                      cameraState.photosTaken = 100; 
                  }, 'RESTORING... (恢復中)');
                  toggleLiveView(false);
@@ -786,7 +796,6 @@
         const container = document.getElementById('settings-table-container');
         if (!container) return;
 
-        // FIX: 更新數位時鐘的HTML結構和Class
         const timeDisplayHtml = `
             <div class="digital-clock text-center mb-4">
                 <p id="current-date" class="text-2xl"></p>
@@ -851,7 +860,6 @@
     function handleMode() {
         if (!cameraState.powerOn) return;
         
-        // 從設定畫面返回，或從主畫面進入選單
         if (cameraState.currentScreen === 'home') {
             changeScreen('menu');
         } else if (cameraState.history.length > 0) {
@@ -865,7 +873,6 @@
     function handleEnter() {
         if (!cameraState.powerOn) return;
         
-        // 在主畫面時，觸發拍攝
         if (cameraState.currentScreen === 'home') {
             if (cameraState.homeStatus === 'ready') {
                 triggerCapture();
@@ -873,14 +880,12 @@
             return; 
         }
 
-        // 在主選單時，進入子畫面
         if (cameraState.currentScreen === 'menu') {
             const menuItem = menuDefs.main[cameraState.menuIndex];
             if (menuItem.setting) {
                 cameraState.tempSettingValue = cameraSettings[menuItem.setting];
                 changeScreen('setting', true, cameraState.menuIndex);
             } else if (menuItem.screen) {
-                // 進入特殊畫面（如日期設定）前的準備工作
                 if (menuItem.screen === 'dateTimeSetup') {
                      const now = cameraState.cameraClock;
                      let hours12 = now.getHours() % 12;
@@ -894,7 +899,6 @@
                 }
                 changeScreen(menuItem.screen, true);
             }
-        // 在設定畫面時，儲存設定並返回主選單
         } else if (cameraState.currentScreen === 'setting') {
             const lastState = cameraState.history.pop();
             if (lastState) {
@@ -907,7 +911,6 @@
             } else {
                 changeScreen('menu'); // Fallback
             }
-        // 在日期時間設定畫面時，儲存設定
         } else if (cameraState.currentScreen === 'dateTimeSetup') {
             const [month, day, year, hour, minute, ampm] = cameraState.dateTimeEdit.values;
             let realHour = hour;
@@ -915,7 +918,6 @@
             if (ampm === 'AM' && hour === 12) realHour = 0; 
             cameraState.cameraClock = new Date(year, month - 1, day, realHour, minute);
             handleMode(); // 返回
-        // 在相機命名畫面時，儲存設定
         } else if (cameraState.currentScreen === 'cameraNameSetup') {
             cameraSettings.cameraName = cameraState.cameraNameEdit.tempName.trimEnd();
             handleMode(); // 返回
@@ -925,19 +927,17 @@
     function handleNav(direction) {
         if (!cameraState.powerOn || (cameraState.currentScreen === 'home' && cameraState.homeStatus !== 'ready')) return;
         
-        // 主選單導航
         if (cameraState.currentScreen === 'menu') {
             const menuItems = menuDefs.main;
             if (direction === 'up') cameraState.menuIndex = (cameraState.menuIndex - 1 + menuItems.length) % menuItems.length;
             if (direction === 'down') cameraState.menuIndex = (cameraState.menuIndex + 1) % menuItems.length;
         } 
-        // 設定選項導航
         else if (cameraState.currentScreen === 'setting') {
             const menuItem = menuDefs.main[cameraState.menuIndex];
             if (!menuItem || !menuItem.options) { return; };
             const options = menuItem.options;
             const currentIndex = options.indexOf(cameraState.tempSettingValue);
-            if (currentIndex === -1) { // Should not happen
+            if (currentIndex === -1) { 
                 cameraState.tempSettingValue = options[0];
                 return;
             }
@@ -946,7 +946,6 @@
             if (direction === 'down') newIndex = (currentIndex + 1) % options.length;
             cameraState.tempSettingValue = options[newIndex];
         }
-        // 日期時間設定導航
         else if (cameraState.currentScreen === 'dateTimeSetup') {
             const dt = cameraState.dateTimeEdit;
             const fieldLimits = [12, 31, 9999, 12, 59, 1]; // 月, 日, 年, 時, 分, AM/PM
@@ -971,7 +970,6 @@
                 }
             }
         }
-        // 相機命名導航
         else if (cameraState.currentScreen === 'cameraNameSetup') {
             const nameState = cameraState.cameraNameEdit;
             const maxLen = 8;
@@ -1046,7 +1044,6 @@
     
     function startBatteryDrain() {
         stopBatteryDrain();
-        // FIX: 電量改每10秒減1%
         cameraState.batteryDrainInterval = setInterval(() => {
             if (cameraState.batteryLevel > 0) {
                 cameraState.batteryLevel--;
@@ -1069,50 +1066,101 @@
         return 1000; // 預設
     }
     
+    // --- 媒體擷取與下載 ---
+    function generateFilename(extension) {
+        const now = cameraState.cameraClock;
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        return `Browning-${year}${month}${day}-${hours}${minutes}${seconds}.${extension}`;
+    }
+
+    function downloadFile(dataUrl, filename) {
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+    
     function triggerCapture() {
         const mode = cameraSettings.operationMode;
         const countdownEl = document.getElementById('countdown-display');
         cameraState.homeStatus = 'capturing';
         
-        if (!countdownEl) return;
+        if (!countdownEl || !cameraState.videoStream) return;
 
         // 模擬拍照效果
-        if (mode.includes('CAM')) { // TRAIL CAM or TIMELAPSE PLUS
+        if (mode.includes('CAM')) {
             screenFlash.style.opacity = '0.8';
             setTimeout(() => { screenFlash.style.opacity = '0'; }, 100);
         }
         
         cameraState.photosTaken++;
-        updatePhotoCountDisplay(); // 只更新照片計數
+        updatePhotoCountDisplay();
 
-        let captureDuration = 500; // 拍照模式預設時長
+        let captureDuration = 500;
         if (mode === 'VIDEO') {
             captureDuration = parseDurationToMs(cameraSettings.videoLength);
-            let elapsedSeconds = 0;
             
-            // 用於更新錄影計時器顯示的函數
-            const updateVideoTimerDisplay = () => {
-                const currentCountdownEl = document.getElementById('countdown-display');
-                if (!currentCountdownEl || cameraState.homeStatus !== 'capturing') {
-                    clearInterval(videoDisplayTimer);
-                    return;
-                }
-                const minutes = Math.floor(elapsedSeconds / 60);
-                const seconds = elapsedSeconds % 60;
-                const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                currentCountdownEl.innerHTML = `<span class="rec-dot"></span>${formattedTime}`;
-                elapsedSeconds++;
-            };
-            
-            var videoDisplayTimer = setInterval(updateVideoTimerDisplay, 1000);
-            updateVideoTimerDisplay(); // 立即顯示 00:00
+            // 開始錄影
+            if (cameraState.videoStream && 'MediaRecorder' in window) {
+                cameraState.recordedChunks = [];
+                const options = { mimeType: 'video/webm; codecs=vp9' };
+                cameraState.mediaRecorder = new MediaRecorder(cameraState.videoStream, options);
 
-        } else {
+                cameraState.mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        cameraState.recordedChunks.push(event.data);
+                    }
+                };
+
+                cameraState.mediaRecorder.onstop = () => {
+                    const blob = new Blob(cameraState.recordedChunks, { type: 'video/webm' });
+                    const url = URL.createObjectURL(blob);
+                    downloadFile(url, generateFilename('webm'));
+                    URL.revokeObjectURL(url);
+                };
+                
+                cameraState.mediaRecorder.start();
+
+                // 更新錄影計時器
+                let elapsedSeconds = 0;
+                const updateVideoTimerDisplay = () => {
+                    const currentCountdownEl = document.getElementById('countdown-display');
+                    if (!currentCountdownEl || cameraState.homeStatus !== 'capturing') {
+                        clearInterval(videoDisplayTimer);
+                        return;
+                    }
+                    const minutes = Math.floor(elapsedSeconds / 60);
+                    const seconds = elapsedSeconds % 60;
+                    const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    currentCountdownEl.innerHTML = `<span class="rec-dot"></span>${formattedTime}`;
+                    elapsedSeconds++;
+                };
+                var videoDisplayTimer = setInterval(updateVideoTimerDisplay, 1000);
+                updateVideoTimerDisplay();
+            }
+
+        } else { // 拍照模式
             countdownEl.textContent = 'CAPTURED';
+            const ctx = captureCanvas.getContext('2d');
+            captureCanvas.width = liveVideo.videoWidth;
+            captureCanvas.height = liveVideo.videoHeight;
+            ctx.drawImage(liveVideo, 0, 0, captureCanvas.width, captureCanvas.height);
+            const dataUrl = captureCanvas.toDataURL('image/jpeg', 0.9);
+            downloadFile(dataUrl, generateFilename('jpg'));
         }
 
-        // 拍攝完成後 (無論是拍照或錄影)，開始延遲倒數
+        // 拍攝完成後，開始延遲倒數
         setTimeout(() => {
+            if (cameraState.mediaRecorder && cameraState.mediaRecorder.state === 'recording') {
+                cameraState.mediaRecorder.stop();
+            }
             if(cameraState.currentScreen === 'home' && cameraState.homeStatus === 'capturing') {
                 startDelayCountdown();
             }
@@ -1128,7 +1176,6 @@
         const updateDisplay = () => {
             const el = document.getElementById('countdown-display');
             if (el) {
-                // FIX: 更新延遲倒數格式
                 const minutes = Math.floor(countdown / 60);
                 const seconds = countdown % 60;
                 el.textContent = `DLY:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
