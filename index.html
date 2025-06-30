@@ -243,7 +243,24 @@
             border-left: 25px solid white;
             margin-left: 5px;
         }
-
+        
+        /* 回放資訊條樣式 */
+        .playback-info-strip {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            font-family: 'Roboto Mono', monospace;
+            z-index: 3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            white-space: nowrap;
+        }
 
     </style>
 </head>
@@ -346,7 +363,7 @@
     <!-- 用於擷取照片的隱藏Canvas -->
     <canvas id="capture-canvas" class="hidden"></canvas>
     
-    <!-- FIX: 調整重置按鈕容器寬度 -->
+    <!-- 重置按鈕 -->
     <div class="w-full max-w-sm md:max-w-md mx-auto mt-6 px-4">
         <button id="reset-button" class="w-full flex items-center justify-center gap-2 bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-all transform border-b-4 border-red-900 active:translate-y-0.5 active:border-b-2 active:shadow-inner">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M21 21v-5h-5"/></svg>
@@ -387,13 +404,13 @@
         menuIndex: 0,
         cameraNameEdit: { tempName: '', cursor: 0, },
         tempSettingValue: null,
-        dateTimeEdit: { fieldIndex: 0, values: [1, 1, 2020, 12, 0, 'AM'] }, // FIX: 預設年份
+        dateTimeEdit: { fieldIndex: 0, values: [1, 1, 2020, 12, 0, 'AM'] }, 
         videoStream: null,
         cameraInitialized: false,
-        cameraClock: new Date(2020, 0, 1, 0, 0, 0), // FIX: 預設年份
+        cameraClock: new Date(2020, 0, 1, 0, 0, 0), 
         batteryLevel: 100,
         batteryDrainInterval: null,
-        photosTaken: 0, // FIX: 預設張數
+        photosTaken: 0, 
         sdCardCapacity: 993,
         mediaRecorder: null,
         recordedChunks: [],
@@ -407,7 +424,7 @@
         photoQuality: 'ULTRA 24 MP',
         videoLength: '5 SEC',
         videoQuality: 'ULTRA',
-        photoDelay: '15 SEC',  // FIX: 預設延遲
+        photoDelay: '15 SEC', 
         multiShotMode: 'SINGLE',
         tempUnits: 'FAHRENHEIT',
         cameraName: 'CAMERA1', 
@@ -450,7 +467,7 @@
             { id: 'PHOTO QUALITY (照片品質)', setting: 'photoQuality', options: ['LOW 4 MP', 'MEDIUM 8 MP', 'HIGH 12 MP', 'ULTRA 24 MP'] },
             { id: 'VIDEO LENGTH (影片長度)', setting: 'videoLength', options: ['5 SEC', '10 SEC', '20 SEC', '30 SEC', '1 MIN', '2 MIN'] },
             { id: 'VIDEO QUALITY (影片品質)', setting: 'videoQuality', options: ['HIGH', 'ULTRA'] },
-            { id: 'PHOTO DELAY (拍照延遲)', setting: 'photoDelay', options: ['1 SEC', '5 SEC', '10 SEC', '15 SEC', '20 SEC', '30 SEC', '1 MIN', '5 MIN', '10 MIN', '30 MIN', '60 MIN'] }, // FIX: 新增15秒選項
+            { id: 'PHOTO DELAY (拍照延遲)', setting: 'photoDelay', options: ['1 SEC', '5 SEC', '10 SEC', '15 SEC', '20 SEC', '30 SEC', '1 MIN', '5 MIN', '10 MIN', '30 MIN', '60 MIN'] }, 
             { id: 'MULTI SHOT MODE (連拍模式)', setting: 'multiShotMode', options: generateMultiShotOptions() },
             { id: 'TEMP UNITS (溫度單位)', setting: 'tempUnits', options: ['FAHRENHEIT', 'CELSIUS'] },
             { id: 'CAMERA NAME (相機名稱)', screen: 'cameraNameSetup' },
@@ -726,6 +743,15 @@
 
         const isVideo = currentMedia.type === 'video';
         const isPlaying = !playbackVideo.paused;
+        
+        let infoStripHtml = '';
+        if (cameraSettings.imageDataStrip === 'ON' && currentMedia.info) {
+             const [logo, pressure, temp, moon, date, time, name] = currentMedia.info;
+             infoStripHtml = `<div class="playback-info-strip">
+                <div class="flex items-center gap-2"><span>B</span><span>${pressure}</span><span>${temp}</span><span>${moon}</span></div>
+                <div class="flex items-center gap-2"><span>${date}</span><span>${time}</span><span>${name}</span></div>
+             </div>`;
+        }
 
         return `<div class="screen-content p-2 flex flex-col justify-between h-full">
             <div class="flex justify-between items-center">
@@ -733,7 +759,8 @@
                 <span>[${playbackIndex + 1}/${mediaGallery.length}]</span>
             </div>
             ${(isVideo && !isPlaying) ? '<div class="play-icon"></div>' : ''}
-            <p class="text-center text-xs">▲/▼: 切換, E: ${isVideo ? '播放/暫停' : '---'}, MODE: 返回</p>
+            ${infoStripHtml}
+            <p class="text-center text-xs self-end w-full bg-black bg-opacity-50 p-1">▲/▼: 切換, E: ${isVideo ? '播放/暫停' : '---'}, MODE: 返回</p>
         </div>`;
     }
 
@@ -1061,6 +1088,53 @@
     }
     
     // --- 媒體擷取與下載 ---
+    function getMoonPhase() {
+        const now = cameraState.cameraClock;
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const day = now.getDate();
+        // Simple algorithm for moon phase simulation
+        const lp = 2551443; 
+        const new_moon = new Date(1970, 0, 7, 20, 35, 0);
+        const phase = ((now.getTime() - new_moon.getTime())/1000) % lp;
+        const moon_phase_index = Math.floor(phase / (24*3600)) + 1;
+
+        // Simplified to 8 phases
+        const phase_icon_index = Math.round(moon_phase_index / 3.7) % 8;
+        const moon_icons = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
+        return moon_icons[phase_icon_index];
+    }
+
+    function generateInfoStripData() {
+        const now = cameraState.cameraClock;
+        const tempF = Math.floor(Math.random() * (75 - 45 + 1) + 45); // Random temp between 45-75F
+        const tempC = Math.round((tempF - 32) * 5 / 9);
+        const pressure = (Math.random() * (30.5 - 29.5) + 29.5).toFixed(2);
+        const moonPhaseIcon = getMoonPhase();
+        
+        const dateStr = `${String(now.getMonth() + 1).padStart(2, '0')}/${String(now.getDate()).padStart(2, '0')}/${now.getFullYear()}`;
+        
+        let hours = now.getHours();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        const timeStr = `${String(hours).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}${ampm}`;
+
+        const tempStr = cameraSettings.tempUnits === 'FAHRENHEIT' ? `${tempF}°F` : `${tempC}°C`;
+        
+        const logo = 'B'; 
+        
+        return [
+            logo,
+            `${pressure}inHg`,
+            '🌡️' + tempStr,
+            moonPhaseIcon,
+            dateStr,
+            timeStr,
+            cameraSettings.cameraName
+        ];
+    }
+    
     function generateFilename(extension) {
         const now = cameraState.cameraClock;
         const year = now.getFullYear();
@@ -1095,6 +1169,7 @@
         
         cameraState.photosTaken++;
         updatePhotoCountDisplay();
+        const infoData = generateInfoStripData();
 
         let captureDuration = 500;
         if (mode === 'VIDEO') {
@@ -1111,7 +1186,7 @@
 
                 cameraState.mediaRecorder.onstop = () => {
                     const blob = new Blob(cameraState.recordedChunks, { type: 'video/webm' });
-                    cameraState.mediaGallery.push({ type: 'video', data: blob, filename: generateFilename('webm') });
+                    cameraState.mediaGallery.push({ type: 'video', data: blob, info: infoData });
                     const url = URL.createObjectURL(blob);
                     downloadFile(url, generateFilename('webm'));
                 };
@@ -1137,11 +1212,52 @@
         } else { // 拍照模式
             countdownEl.textContent = 'CAPTURED';
             const ctx = captureCanvas.getContext('2d');
-            captureCanvas.width = liveVideo.videoWidth;
-            captureCanvas.height = liveVideo.videoHeight;
-            ctx.drawImage(liveVideo, 0, 0, captureCanvas.width, captureCanvas.height);
+            const videoWidth = liveVideo.videoWidth;
+            const videoHeight = liveVideo.videoHeight;
+            const infoStripHeight = 22;
+            
+            let canvasHeight = videoHeight;
+            if (cameraSettings.imageDataStrip === 'ON') {
+                canvasHeight += infoStripHeight;
+            }
+            captureCanvas.width = videoWidth;
+            captureCanvas.height = canvasHeight;
+            
+            ctx.drawImage(liveVideo, 0, 0, videoWidth, videoHeight);
+            
+            if (cameraSettings.imageDataStrip === 'ON') {
+                ctx.fillStyle = 'black';
+                ctx.fillRect(0, videoHeight, videoWidth, infoStripHeight);
+                ctx.fillStyle = 'white';
+                ctx.font = '12px "Roboto Mono"';
+                ctx.textBaseline = 'middle';
+                const [logo, pressure, temp, moon, date, time, name] = infoData;
+                const items = [logo, pressure, temp, moon];
+                let xPos = 5;
+                
+                ctx.font = 'bold 16px sans-serif';
+                ctx.fillText(logo, xPos, videoHeight + infoStripHeight / 2);
+                xPos += 15;
+                
+                ctx.font = '12px "Roboto Mono"';
+                ctx.fillText(pressure, xPos, videoHeight + infoStripHeight / 2);
+                xPos += ctx.measureText(pressure).width + 10;
+                ctx.fillText(temp, xPos, videoHeight + infoStripHeight / 2);
+                xPos += ctx.measureText(temp).width + 10;
+                ctx.font = '16px "Roboto Mono"';
+                ctx.fillText(moon, xPos, videoHeight + infoStripHeight / 2);
+                
+                ctx.font = '12px "Roboto Mono"';
+                const nameWidth = ctx.measureText(name).width;
+                ctx.fillText(name, videoWidth - nameWidth - 5, videoHeight + infoStripHeight / 2);
+                const timeWidth = ctx.measureText(time).width;
+                ctx.fillText(time, videoWidth - nameWidth - timeWidth - 15, videoHeight + infoStripHeight / 2);
+                const dateWidth = ctx.measureText(date).width;
+                ctx.fillText(date, videoWidth - nameWidth - timeWidth - dateWidth - 25, videoHeight + infoStripHeight / 2);
+            }
+            
             const dataUrl = captureCanvas.toDataURL('image/jpeg', 0.9);
-            cameraState.mediaGallery.push({ type: 'photo', data: dataUrl, filename: generateFilename('jpg') });
+            cameraState.mediaGallery.push({ type: 'photo', data: dataUrl, info: infoData });
             downloadFile(dataUrl, generateFilename('jpg'));
         }
 
